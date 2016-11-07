@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include "funcs.h"
 void create(char name[20], FILE* ptr)
 {
     account tmp;
@@ -9,13 +11,21 @@ void create(char name[20], FILE* ptr)
         tmp.name[i] == name[i];
     }
     fseek(ptr, 0, SEEK_END);
-    fwrite(&tmp, sizeof(tmp), 1, ptr);
+    fwrite(&tmp, sizeof(account), 1, ptr);
 }
-void deposit(double amount, FILE* ptr)
+/*
+void deposit(char name[20], double amount, FILE* ptr)
 {
-
+    account tmp;
+    fseek(ptr, 0, SEEK_SET);
+    while(fread(&ptr, sizeof(account), 1, ptr)
+    {
+        fread(&ptr, sizeof(account), 1, ptr);
+        
+    }
 }
-void withdraw(double amount, FILE* ptr)
+*/
+void withdraw(char name[20], double amount, FILE* ptr)
 {
 
 }
