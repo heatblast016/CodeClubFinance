@@ -40,11 +40,47 @@ void deposit(char name[20], double amount, FILE* ptr)
         fseek(ptr, x, SEEK_CUR);
         tmp.balance += amount;
         fwrite(&tmp, sizeof(account), 1, ptr);
+        printf("%lf dollars deposited succesfully.")
     }
 }
 
 void withdraw(char name[20], double amount, FILE* ptr)
 {
+    int trigger = 0;
+    account tmp;
+    fseek(ptr, 0, SEEK_SET);
+    while(!feof(ptr))
+    {
+         fread(&tmp, sizeof(account), 1, ptr);
+         if(strcmp(tmp.name, name))
+         {
+             trigger == 1;
+             break;
+         }
+    }
+    if(trigger == 0)
+    {
+        printf("ERROR: ACCOUNT NOT FOUND");
+    }
+    else
+    {
+        int x = sizeof(account);
+        x *= -1;
+        fseek(ptr, x, SEEK_CUR);
+        tmp.balance -= amount;
+        fwrite(&tmp, sizeof(account), 1, ptr);
+        printf("%lf dollars withdrawn succesfully.")
+    }
+}
+
+void transfer(double amount,char sender[20], char receiver[20], FILE* ptr)
+{
+
+}
+void checkbalance(char name[20])
+{
+
+}
 
 }
 void transfer(double amount,char sender[20], char receiver[20], FILE* ptr)
